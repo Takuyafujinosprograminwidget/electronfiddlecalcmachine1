@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <link href="./styles.css" rel="stylesheet">
+    <script src="./renderer.js">
+      let num1 = 0;
+      let num2 = 0;
+      let operator = 0;
+      let total = 0;
+      let send-btn = 0;
+    </script>
+    <title>計算システム</title>
+  </head>
+  <body class="body-area">
+
+    <h1 class="head-area">計算システム</h1>
+    
+    <div class="box_comdata">
+
+      <div class="image-area">  
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAABkCAMAAAD0WI85AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABgUEx
+    URbeHRv70u05TSP3+/c2yfanW6eno1IZKGdTUxquplsXFtloxEHx8d+6duXaFXHuJkvmnxf7loWRkX6t1ih8YE6mmKK2ruD8/L53C0+XGjv7OjtnY5RwLW//52azTc6nk/KiYyjIAABYaSURBVHjaYhAdJgAggBh
+    E5UgHTOKcpCiXxwv4mcT5GFgkJVlYGJiEMKVZWVnliQCiAAFEjkfEOTnEqeURCWCgSEGBoBSfOKqrxYSYxMXFhYT4CXpGFCCAyPCIEL8sMw8fdTzCKs4ghQwYkH3CysQEiiopFgYhJiECXhEFCCAyPCLOJivLxQR
+    icVLsEXFOQRSPCPIxwVOThDiDICyqJPnEefB7BCCAsHiEE39oczIxy8pyAD3CxyQkTqFHmPikUIGgoBArq4iIEBM/0B8syJ6UZBLH6xGAAML0iDjUfUxM2J3Fxy8rK8vGJMcnxMbMRJlH+JnQ/MHCxycuzi8uLsn
+    CJC7CgBZZDEL4PAIQQBgeYeIDJhxxUI7mhIS3EDC7IYc8ExfQIxxCnExsssyUxQirOKo3JJlEhBj4+NjFRYAJjkUc3ZeCfHjiRBQggDA8Is7ByCjLxynEKSsrBAp/Jk54loB6BMhn5hIR4QLHCyUeEWJAcyq7CIu
+    goJSgJAMLyFsi6OlOCpjgcHoEIIAwYwToEUYuEXEgCQxvoH+AOUKWmYkTFFd8TMDswwTky3KJ8DDLMnPyUeIRViZJtBjhA+YOFggTGAEsIizoKQ93lIgCBBBmjHDJMjKyifAwMnKIAPO9LASA8jYPMzMbnxCnOIj
+    PLwKKFz6KSi0xJtRMwCcuIiICrDcYwOUUJwOfCJ8gWuLCHSWiAAGE4RE+PmBcyIpwMspyivOA0g8oQvhBEcLFDGKJiIMoPiFo0UWBR/jRqxAhcX42Dml+cWCSAmZ2IR4mcfQowZ3fRQECCMUjTExCwNIV6BFGJi5
+    GWSFgAEHig02cExhcYE8xc/KARcDRRFY9Am9y8ECCHoKBqYlFXAyY94SYOcQZWET42fj5mcXQqktBKSZEdDKJoXgEIAClZawCMAwCUTm7WEIGSZFS+v+/mbPpUMcquOr5OPErhK+HEW+apLGMQNMFhMgFcZdgU54
+    CBP4JcQBLiudtkv5kusVd9YIp5w/WCNW9MNm6jHcL7nYWOscUgNAySAEYhIGgrSI5lEokJZWS/3+zK0awp87Bq4zZJX5EbDMEqpcEkJKOZJlIADK0JhnOB5n9/1bWCzEG9s6WM1WUu1P3wE0pOgql+GQc66ZpeDU
+    XQfo4QeQucyzXK4CQPcIE8oEsxBsgwCbCAY0QBgZMn3CK8LCBsgsXEykeYWKBF6MSoKzNBKrNQX5jkWKShnuEE8biEAdFhJAQA4OkIANQrYgEJD6AhojzA/MrvOUiChBAKB7hQ3gCHCci4KzAIcLHAPWJEBuSV6B
+    sPk6SPQKJElZg3S0pwgBKXZxSkpKSwCwCAWwiYgiPsDCxA60HtoL5mICRKcQPbjEDfS8kziSOiF15UYAAQs3sfIwoXoHkb2CBCANMIvyyaDmFT4ikPMIPLlLBGZUJ1AYRF2ESEgLmG0lgvQ1MUByc/Dz8QiLwGOF
+    iAvZTJAWBkQZMhkD1DPzQwAC2N4B6gO0WaPYXBQgg1OKXD5QrIJ4AuVIIlJY4RRgQHmES50JOXqCKhcRSC9yE4mSChCuw+gaGKrAuF+djkQQnFgiAZxceoHJgw4WPBagK1BjmA2UMIWDpBWw2SYLrHmjuFwUIQHk
+    ZpQAIwzBUpCobUjBUuq/d/5imVYb4Z28QXpqm3zvi0DVkVAYSYHHUBxDi7ahvHcX1R/wujQ4vFo+UtwTC1n53DwhtJlwa0Y1jD5PiInQP1Gc5nDCnPYFwt1IHxvtyXgJQWu4oAAIxEF1iWN0PBpZg2Mb7H9MZUCy
+    s7NOE+b0v/Y7AhvTopZrAW9VfOc57Fp+QlF+sxeJ1qcZxULNBoKU+msIRZ7jEmy7KR9bmR84bTgFec4cESeagIp3ILE5fzRTy1u8lAOVllAIwCMPQkoE6kMKKaHv/iy4qw+8d4ZmYpBPkZqwN6On2yyytF+kjFds
+    Yuu90lBNb+DVRMMsiKCu/adATdIuZ1wFoY5EzUbXlvARZJMQWqcQjoESINaon1cGRTP6HS6B3989arwCMl+EKgDAIhMHGxtgKWhdW7/+gnbPV3/wv+MmpJ0Fasa20yPDkDapxaFSm6Bz4vK/H/7/dn3PtB9z6CHe
+    DLKWvIKKdOm9EQXqjmHSsWvpITgmx6lHDFSyX93Iles6CJI+49lsAMYgKcYNdygIMK2AjEZj6eDhFuJjhRTqXrCS45JVD9wgXE0keYYVVbUCvQNvnsEYGMPEyCQjwgppEcI+AGowgPwvx8oqwAJ3PCh6KAHqeE9w
+    0BkUHMMsCyzMGSDtSFCAAJeayAiAQQtGYHgRhmUwM/f+PdjSH1i1dXtR7jw5XCR336OqhNlZ4LXh5+sYBHS5kb38A1Y9Q/gnxFDuDq9xMX9xNliUrTEWQ0uqWg1V3imaiqtaImDkOsX78TqwCfYy2ppBHADGIQrI
+    AFzMHMNjFwJ0PoOOB7Q9+aEEOEmHk4IKWTyLMBGKEE1gPC6FWkvAxEWAS5gSmUkjTCtTEhXlEXBjoEaCjeUXgQFxcSBgkAgRAeUj6ARUQ0J6LOKTjAiy4JSAeAQggmEfAgFsI7ExOoEeA7ShIdgdmElBxIwQs4kG
+    jJoiWIye2GgSokp+Ti5Mf1I7GKH4l+PmBTXOQK6FNQYgjgAEtwgt2sYAwsHDhFxESkwZGkQDEF8gekUe0ISGtZhYhWA9FFCCAUDzCJAQJa1C7k18WlrQYObmArRFgJHFCh1CgdQhmmQVsk0LaLcDkyI8YjURuw4N
+    GAISAMcLCB4wVPiFoeSYuDHaxAKgBzAYqaXjEYb4AAiZ4N4QHufcLzNVM8JE7UYAAQvMIxJniKJkd6CNYrwToEXiM8PNhjkDKIioZYDOJE90jrEI8DCyg0kgS1MIAtWdZIc5jEobFiDiwFuYU4xRnQvIIsI8Fb+B
+    AYwPkCSExpEE7UYAAQvGICCeswmZGFL/Aeo+TiwNcCAATlxA8RjA8gt4O4xBC9wio9Q3OoExAl4FbHJBmMBMf1N3A/A6KMmBWRngD6DsmCVg2AyctYIJC9QXIIwABBCu1IHUFtGxlFmKCttlAo4psPELgXMLDJST
+    EIwR3J3o/hAmlFQbORZyoHuGHdNJZIA5jBdYULJA0A8w5QtAcAc0a8PwB9Js4EyxChPjAzSsmfgnMri5AADGIItqEIjzwdMEjzs/FBazxOcDFGDBtsXFw8QOLIyF4lwR9+FdchJMN1SfMsOIAMWAtCe6NQ6sPUBn
+    EA+0sgisMpNTEi+QPcdi4L6iZKQlsDWDtswMEEIMoMD1C4wOcbNggXXMuUPRxQlq44MwOysHAxigPzhgBduv5ZVG8AhucQLThgckGMRACqhagtYA8D6gG50UUVLDYAVX4cB2g0QomHEPAogABBGpr8QEbYcB+ASe
+    0eoCkL2ZZiKuYOUVE+IV4IKHNhegkMgtxYhkW5kfxCRNGqSUhgTJiCu8XAVswoLpDCJq4IIAXVEMi/CHBD23VYPUIQABBW798fBxwF6IkDzYmEWFgVPGLC4Fai2wiiDzCh63JKI7SGxYnMPYLjBKwM8GFqBgTrCI
+    EdbWEQTMjYL9JIFRLSYrjml0QBQggWDOeUxYbAJZf4qD6FpiP+cEFMROiHsHqETkmIaRmvggBjwATPah2BzbpWSH9FTF+YIUJbG6LQ2p3ITEJhMNBOR3PAB1AAME8wgdvnjODakRo8QWszkFRDXI+MxuoBOZnksW
+    R2eFxgkhdbOKQzgGeaQVg/w/oDWDrDu5gVhFgS5BJXALRQgdmJlZQ/kL0a7F5BCCA4B6BhSQHD6gGgFRpTCKcwF6AgIAwvKnIJY6nQkTMA8F8wgbsaOLzCLDXCmz/sYG6gnBXg9ovKLM6YkI8TJAqhEkCt0cAAgj
+    eQxSHFp7g2ADldDYeESEgkw/oE154BcOFaDTiGsHmE2JGG5zAM63BAyyNwaNA/BCfAOt1sEdEEIlISEgaNEII7bDj9AhAAME9wieEmj34RSAjdVwiIsICIrCExwHzEp5mPFKUQIoufHOh8HEGMWALUoKJn00I6BF
+    JESDNBJ1/AzdemURAPXQ884iiAAGE6LPz8cEafKAmn4g4J3RMCNg1RXhEFsHC6REhTpSCj18cr0fgw4tcwKJWjJkZ6hHQICM/KysPE2SIi02cCV7nYPcIQAAhDT5wivOAi1guYI8CFEHQYSFgpxGetEDtSfTqDvs
+    kI3IhjGdSVwjRPAWW9KDA5xcBdWhBzpcWAXX0oJLSwNYkvoldUYAAQhlFAY1JA0tucOJngo3ScYmICyMSFKJQwj1dxYRahONO2axMnMxIQAjUlxMTAdb34hC3I/kS2GJlwjsZChBAOKenxcWAUQKOFaDfEGWVEA9
+    6dYfFI6gxwo+7GhFjRvEIODuI8wmCfQQawkGW5cAfIwABhNMjfDxAX3BygUerRRB1A1LzV1yOuNzOibNiF2JG9YgQZFBOCOIDfiZUaU68s7oAAYR7wQATODJEwKkN4TJOeOQw45rn4RRnYGEjJmmxCqHGCA/E5Uw
+    iEI8IofmTWQhPbhcFCCDcHgENOIpzcfHz8CCXQkjlL66JET5QaxqpVhTBXWah5AJoFAiBGlhgD/GjeYRDBHfiEgUIINwe4eMD1gFczODiGHl6h4NQjQjuFbAwwiOECV/NjpJ2xCH+EJMGFb9s4pxoHuHHFyMAAYR
+    nLQowbXHyoff6ZBFBjasigQx6c8CbnfgqRH5kn4iJg4bfZcSAJRewmcqFmMGC+gPfahRRgADC4xEhYJUozsMmiwsA2/TYR4TAHhGEqAFNO+ArNnmQfMIhzsUDjA9mfhlg3pRGDBxA6ksefrzFL0AA4fEIJ5MsI4e
+    IEE6PAHMQP5ZpBegsBBskOjgJLTxDzgnA1rIQE9AfMsDuD2yEEO5JMfyrgwACCN8yJ3FBRjYRTmacHgHWxGwYC4TEIfN0LNAWKOEVdEhZgZ+JjUNcSEaGE1jtCjGxoaQ6CQLrtQACCJ9HhPhk+cRx+0OWUwjcdkS
+    JFD5uJH9AlrMQ8AgratElBMwk/OgFLychf8iLAgQQPo8A05Y4ngiBz74xoRW9DAySKB17Am6QQEzngttaYswY2ZygP+RFAQII7wo6cS5xNlnCgEccNaOzyKIOtRByBL8QUioCNtvFRFA9IsZEeH2mKEAA4fUIHxM
+    PMxEeYYZOwfFBB5bYkGp1ImIENECHKJxEpLlkRLhQ0xUR60xFAQII/5pGEU5ZogAnE7glw8CAFiHM4kR5RB4xsQ7sgMjIoOQaYuID6BGAAMLvESEiPQLsxHDCVhUgewTS1CfoClZ4O5eNSVxGRoyTH8UjRK37BQg
+    g/B7h45IlGkjCPMKB1IIXIsojiFKKSwToD2AdjuQRNiGiYgQggKjnEVk2FoyUxSRHlEeYuBBlFqiFIoNU/LLhbfQiPAIQQFT0CKhtLMiBpRAgnLLgzmYSAflDBKUnIiZEjEcAAohAHiHRI7JoLWU5ojyCSFkcwIY
+    EMLMzIVeIbGxExQhAABHwCIcs+QA+qErIEYj+FbD9C4wPfmnkioWNmYeY4hcggGjhES7IjAqfEFG7FYAdRTZEbxYYH6AlgNLIHhEjIkpEAQKI+h5h5hQR5+HhYUI0jAm4QQyRkHiAhS8XKFI4kD0iTUQmEQUIIGp
+    5hA3aKgONtPKLiJOwf0ReCNH8FZIBF1rA3ghyHmEjomoXBQggapVaHCIiQF8zs4FHWrlESPEIE9IcMjg+ZHiYkMftpJmFxAh7BCCAqOMRRtC4I2j3gghoapdRllOEeI8gqnVgNx0cH/zM4mLIMYK3sw7zCEAAEfA
+    IJwkegfUqIeOsRHtEAlFpSDMxgzM7cnedDRgjnDyEPQIQQPg9wsnJTKRHoDO4UI8wyiLPMBKX19mkufiZwPEhjdz8ZQMVW4RzuyhAABHY0QNsvckyE+MR6LQPJ2zsW1Kc+BgR4wKtUQHPGELiA9j+BW2s4hfj4pA
+    GLf8lxiMAAUTAIyI8QjycHIT8AowB6LAjH2zFrSyPELG73kRkQBAERCCFlgyPCFgMhEAT2kziROQRgAAi0LESAlUIIuJCXMwEPCLCCd99AvUJ1kU1WAYbIX6AeEQEXGjxs4nLIAGgf4jwCEAA4fMIeOoHlEy5OHn
+    Y8PuDSwQ8GSEkhFg3jBi/w5dBRJCdDGz1guID3JhHAeKEPQIQQGjrfkFJlQm2bkwce1sQa8riY+Nj4hNCXsoti7k6CLOPi+piES5YZkfziAhhjwAEEIpHxMFLxtmApQcTMM1zChFZZIEWnwOTFBcPJ/IybsQaD9w
+    1CLp7QWNzzNLowkDAirpjA4tHAAII2SN8sJFeYGriBA2KE+sPWUiSkkVdWs9FwCMSIhgBD+qui4nLYPhEREKeVQxc3eL0CEAAoWy7YENJS2I8bET6g0OEDcULjGxcQMQkgtcjYiIY4Q5Z7wCiMGVkwII4JxZEAQI
+    Im0egVQczsfEBLHtR4wKY1ICAjwtfx4pHhgwggtsjAAGE7BEh8AwbMwc/Pz+xjUVILS6O5g9QuuJghO9dIjI+KPMIQAChZnYu0IAMaE0tExtmH1aME6s3ZJnE2RixAyHcHhGXobJHAAIItfgV4mMDlVzYmiWc4kL
+    oeQbsDU4hIT5GXB7hw+URVjIjhBvXILAoQAChVYh84iLQNaVcXGyoszqczMxokQH0BgeomcvHh5m0GMHTweK4PCJBVoTIcIvg9AhAAGHuDOWB7nMTQcknXCIiTIhFixCXMnNAjxrAyOzA1jAfF48IsELC5RHyYoR
+    bBFcXSxQggDCbKMBKGthGEJNFmywH7VBkYuIHxhMk4YGrTT7k7aRQL3CBJuiBKRHUVRSkrkdkuLlxVSSiAAGEpa3Fx8Qvzo+eSaA78UGLPIDNUdD6YybkBfDisDiR5RKHNFQgWQjXjBUr7lDHFyPsuD0CEEBYG41
+    8mPM7qCtPMJcKiAtBYhC0zwSR0nB7BGepxS8kgs8juHomogABhKP1K4QeJQRPeeATZ+Lj54PsE4XvA4TUJFhHHHA4VQhPZIE8gqvTKwoQQLia8eJCaMuR2Qhu4OHkg6/XFAftA5TFEyO4KnZx3H4Elb54YgQggHD
+    2RziF+FB36nESvfEFvB6Pjwu0dY6PNI+I4y8IgB7BNVkiChBA+ObZUWMFx/pY3L1LJtg5MNhaKFjzCLSWEMdZ+rJz41zADBBA+Lu6KJmejaRTXfAOB/FgDXTY0jJ+XFHCzc6Oq4slChBABAYfmEBr9VDnn6jhERw
+    ulcDfEBPB5xGAACJ0wAunOB8XvOUlTiWP4MgF8PaHBPbaBG/SAgggwifV8MG9wsxEHY9AB4Awe0+siG0NMiKYikSEcJ/yIgoQQMQcuQPM9VzghgmVPALuB3JDu4PIDhVDPlBBQkKMn59HiAmhSkSIjQln8QsQQES
+    eHQTaTMIpxEcVjwiJsLNzMUD2G3KDu7bwWh37GIWEEMQroKSF0yMAAUT8IUicnHLUKbVA2z8lOZF2s8KDHOeMOis/aBwP5BGcNTtAAJF1UBhlHuEXQdo2KSLODR71BecHPIPuoGgRB6ZHnI1GgABiGCQnr7FTagB
+    AgAEAgWlP8JNCihsAAAAASUVORK5CYII=" 
+    width="200" height="100" alt="イヌとネズミ" />
+      </div>
+      <div class="number1-area">
+        数字１<input type="number" id="num1">
+
+        <label for="operator">演算子</label>
+        <select id="operator">
+          <option value="+"> + </option>
+          <option value="-"> - </option>
+          <option value="×"> × </option>
+          <option value="÷"> ÷ </option>
+        </select>
+
+        数字２<input type="number" id="num2">
+      </div>
+    </div>
+
+    <div class="calc-area">
+      <div class="box_calcdata">
+        <label for="答え">  </label>
+        <input type="button" value="答え"onclick="calcButton()"class="green-button" />
+        <input type="button1" value="答え"onclick="calcButton()"class="green-button" />
+        <input type="button2" value="答え"onclick="calcButton()"class="green-button" />
+        <input type="button3" value="答え"onclick="calcButton()"class="green-button" />
+        <input type="button4" value="答え"onclick="calcButton()"class="green-button" />
+        <input type="button5" value="答え"onclick="calcButton()"class="green-button" />
+        <input type="button6" value="答え"onclick="calcButton()"class="green-button" />
+        <input type="button7" value="答え"onclick="calcButton()"class="green-button" />
+        <input type="button8" value="答え"onclick="calcButton()"class="green-button" />
+
+      </div>
+      <div class="box_senddata">
+        <label for="送信"style="color:blue">  </label>
+        <input type="button" value="送信"onclick="sendButton()"class="blue-button" id="send-btn"/>
+        <input type="button1" value="送信"onclick="sendButton()"class="blue-button" id="send-btn"/>
+        <input type="button2" value="送信"onclick="sendButton()"class="blue-button" id="send-btn"/>
+        <input type="button3" value="送信"onclick="sendButton()"class="blue-button" id="send-btn"/>
+        <input type="button4" value="送信"onclick="sendButton()"class="blue-button" id="send-btn"/>
+        <input type="button5" value="送信"onclick="sendButton()"class="blue-button" id="send-btn"/>
+        <input type="button6" value="送信"onclick="sendButton()"class="blue-button" id="send-btn"/>
+        <input type="button7" value="送信"onclick="sendButton()"class="blue-button" id="send-btn"/>
+        <input type="button8" value="送信"onclick="sendButton()"class="blue-button" id="send-btn"/>
+      </div>
+    </div>  
+
+    <div class="answer-area">
+      <label id="answer-label"> 答えがここに表示されます</label>
+    </div>
+
+    <div class="send-area">
+      <label id="send-label"> 送信ログ</label>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "disgusted-revolution-perfect-0u6b9",
+  "productName": "disgusted-revolution-perfect-0u6b9",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "T_Fujino",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "18.2.3"
+  }
+}
